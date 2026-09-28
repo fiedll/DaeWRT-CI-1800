@@ -1,0 +1,30 @@
+name: JDCloud-RE-SS-01
+
+on:
+  workflow_dispatch:
+    inputs:
+      PACKAGE:
+        description: 'Extra packages'
+        required: false
+        type: string
+
+permissions: write-all
+
+jobs:
+  build:
+    name: jdcloud_re-ss-01
+    uses: ./.github/workflows/WRT-CORE.yml
+    with:
+      WRT_CONFIG: IPQ60XX-WIFI
+      WRT_THEME: argon
+      WRT_NAME: DAE-WRT-JDCloud
+      WRT_SSID: DAE-WRT
+      WRT_WORD: 12345678
+      WRT_IP: 192.168.10.1
+      WRT_PW: 无
+      WRT_REPO: https://github.com/LiBwrt/openwrt-6.x.git
+      WRT_BRANCH: k6.12-nss
+      WRT_SOURCE: LiBwrt/openwrt-6.x
+      WRT_PACKAGE: "${{ inputs.PACKAGE }}"
+      WRT_TEST: false
+      CI_NAME: JDCloud-RE-SS-01
